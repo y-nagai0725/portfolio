@@ -1,0 +1,16 @@
+@use "../global" as *;
+
+body {
+  background: $black;
+  font-family: $noto-sans;
+  font-weight: 400;
+}
+
+.wrapper {
+  overflow: hidden;
+  opacity: 0;
+
+  &.js-active {
+    animation: fadeIn 0.8s forwards;
+  }
+}

@@ -1,0 +1,145 @@
+@use "../setting" as *;
+
+//スライドメニュー表示アニメーションsp
+@keyframes zoomUpSp {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+    width: 3000px;
+    height: 3000px;
+  }
+}
+
+//スライドメニュー表示アニメーションtab
+@keyframes zoomUpTab {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+    width: 5000px;
+    height: 5000px;
+  }
+}
+
+//mvのスクロールボタンの矢印アニメーション：移動量
+@keyframes mvArrowMove {
+  0% {
+    top: 10px;
+  }
+
+  100% {
+    top: 40px;
+  }
+}
+
+//worksのスクロールボタンの矢印アニメーション：移動量
+@keyframes worksArrowMove {
+  0% {
+    transform: translate(-50%, calc(-50% - 8px));
+  }
+
+  100% {
+    transform: translate(-50%, calc(-50% + 15px));
+  }
+}
+
+//works個別ページの上矢印アニメーション：移動量
+@keyframes worksIntroductionUpArrowMove {
+  0% {
+    top: 0;
+  }
+
+  100% {
+    top: -30%;
+  }
+}
+
+//works個別ページの下矢印アニメーション：移動量
+@keyframes worksIntroductionDownArrowMove {
+  0% {
+    bottom: 0;
+  }
+
+  100% {
+    bottom: -30%;
+  }
+}
+
+@keyframes fingerUpMove {
+  0%{
+    transform: translateY(25%);
+  }
+
+  100%{
+    transform: translateY(-25%);
+  }
+}
+
+//mvのスクロールボタンの矢印アニメーション：途中で隠す
+@keyframes arrowHide {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+//worksのSCROLL DOWN文字アニメーション
+@keyframes circleRotate {
+  0%{
+    transform: rotate(0);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
+
+//fadeRight
+@keyframes fadeRight {
+  0%{
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+//fadeUp
+@keyframes fadeUp {
+  0%{
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+//fadeIn
+@keyframes fadeIn {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}

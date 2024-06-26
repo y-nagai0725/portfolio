@@ -1,0 +1,206 @@
+@use "../global" as *;
+
+#contact {
+  .contact-area {
+    @include contents-width(1160px);
+    margin-top: 100px;
+    opacity: 0;
+    animation: fadeIn 1s 0.5s forwards;
+
+    @media screen and (min-width: 768px) {
+      margin-top: 120px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      margin: 176px auto 0;
+    }
+
+    &__ttl {
+      margin-bottom: 40px;
+      color: $white;
+      font-family: $oswald;
+      font-size: 66px;
+      font-weight: 700;
+      text-align: center;
+
+      @media screen and (min-width: 768px) {
+        margin-bottom: 50px;
+        font-size: 91px;
+      }
+
+      @media screen and (min-width: 1024px) {
+        margin-bottom: 75px;
+        font-size: 190px;
+      }
+    }
+
+    &__txt {
+      margin-bottom: 20px;
+      color: $white;
+      font-size: 12px;
+      line-height: 2;
+      letter-spacing: 0.03em;
+      text-align: center;
+
+      @media screen and (min-width: 768px) {
+        margin-bottom: 50px;
+        font-size: 14px;
+        letter-spacing: 0.05em;
+      }
+
+      @media screen and (min-width: 1024px) {
+        margin-bottom: 75px;
+      }
+    }
+
+    &__form {
+      margin: 0 auto 80px;
+      max-width: 800px;
+    }
+
+    &__form-notice {
+      margin-bottom: 20px;
+      color: $gray;
+      font-size: 12px;
+      line-height: 2;
+      letter-spacing: 0.03em;
+      text-align: right;
+
+      &::before {
+        content: "＊";
+        color: $white;
+        font-size: 12px;
+        line-height: 2;
+        letter-spacing: 0.03em;
+      }
+
+      @media screen and (min-width: 768px) {
+        margin-bottom: 30px;
+        font-size: 14px;
+        letter-spacing: 0.05em;
+
+        &::before {
+          font-size: 14px;
+          letter-spacing: 0.05em;
+        }
+      }
+
+      @media screen and (min-width: 1024px) {
+        margin-bottom: 40px;
+      }
+    }
+
+    &__form-box {
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+
+      @media screen and (min-width: 768px) {
+        margin-bottom: 40px;
+      }
+    }
+
+    &__form-label {
+      display: block;
+      color: $gray;
+      font-size: 12px;
+      letter-spacing: 0.03em;
+
+      &.required::after {
+        content: "＊";
+        color: $white;
+        font-size: 12px;
+        letter-spacing: 0.03em;
+      }
+
+      @media screen and (min-width: 768px) {
+        font-size: 14px;
+        letter-spacing: 0.05em;
+
+        &.required::after {
+          font-size: 14px;
+          letter-spacing: 0.05em;
+        }
+      }
+    }
+
+    &__form-input,
+    &__form-message {
+      width: 100%;
+      padding: 23px;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      appearance: none;
+      background-color: $white;
+      background-image: none;
+      border-radius: 0;
+      border: none;
+      color: $gray;
+      font-family: $noto-sans;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      transition: 0.4s;
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 8px 0 $gray;
+      }
+
+      &::placeholder {
+        color: #8E8E8E;
+      }
+
+      @media screen and (min-width: 768px) {
+        font-size: 16px;
+        padding: 40px 23px;
+      }
+    }
+
+    &__form-message {
+      height: 280px;
+    }
+
+    &__form-submit {
+      -webkit-appearance: none;
+      background-image: none;
+      border: none;
+      border-radius: 0;
+      text-decoration: none;
+      width: 100%;
+      padding: 26px 0;
+      border: 1px solid $paleGray;
+      background-color: transparent;
+      color: $white;
+      cursor: pointer;
+      display: block;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      transition: 0.4s ease-out;
+
+      &:hover,
+      &:focus {
+        outline: none;
+      }
+
+      &::-moz-foucus-inner {
+        border: none;
+        padding: 0;
+      }
+
+      &:hover {
+        background: $white;
+        color: $black;
+      }
+
+      @media screen and (min-width: 768px) {
+        padding: 40px 0;
+        font-size: 16px;
+      }
+    }
+  }
+}

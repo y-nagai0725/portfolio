@@ -1,0 +1,208 @@
+@use "../global" as *;
+
+#works {
+  .works-view {
+    @include contents-width(1160px);
+    margin-top: 100px;
+
+    @media screen and (min-width: 768px) {
+      margin-top: 120px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      margin: 176px auto 0;
+    }
+
+    &__box {
+      margin-bottom: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+
+      @media screen and (min-width: 768px) {
+        margin-bottom: 100px;
+        gap: 40px;
+      }
+
+      @media screen and (min-width: 1280px) {
+        margin-bottom: 140px;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+
+    &__ttl {
+      color: $white;
+      font-family: $oswald;
+      font-size: 66px;
+      font-weight: 700;
+      opacity: 0;
+      animation: fadeRight 1s 0.5s forwards;
+
+      @media screen and (min-width: 768px) {
+        font-size: 91px;
+      }
+
+      @media screen and (min-width: 1024px) {
+        font-size: 190px;
+      }
+    }
+
+    &__filter-wrap {
+      display: flex;
+      justify-content: space-between;
+      max-width: 380px;
+      opacity: 0;
+      animation: fadeIn 1.5s 0.5s forwards;
+
+      @media screen and (min-width: 768px) {
+        justify-content: flex-start;
+        gap: 30px;
+        max-width: none;
+      }
+
+      @media screen and (min-width: 1280px) {
+        align-self: flex-end;
+      }
+    }
+
+    &__filter-btn {
+      cursor: pointer;
+      display: block;
+      padding: 10px 0;
+      color: $gray;
+      font-family: $oswald;
+      font-size: 13px;
+      transition: 0.4s;
+      position: relative;
+
+      &.ja {
+        font-family: $noto-sans;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 6px;
+        width: 100%;
+        height: 1px;
+        background: $gray;
+        transform-origin: right;
+        transition: transform 0.4s;
+        transform: scaleX(0);
+      }
+
+      &:hover {
+        color: $white;
+      }
+
+      &.js-active {
+        color: $white;
+
+        &::before {
+          background: $white;
+          transform-origin: left;
+          transform: scaleX(1);
+        }
+      }
+
+      @media screen and (min-width: 768px) {
+        font-size: 16px;
+      }
+    }
+
+    &__ul {
+      margin-bottom: 48px;
+      display: flex;
+      flex-direction: column;
+      row-gap: 48px;
+      opacity: 0;
+      animation: fadeUp 1s 1s forwards;
+
+      @media screen and (min-width: 768px) {
+        margin-bottom: 100px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        row-gap: 72px;
+      }
+
+      @media screen and (min-width: 1024px) {
+        margin-bottom: 140px;
+        row-gap: 96px;
+      }
+    }
+
+    &__list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      list-style-type: none;
+
+      &.js-hidden {
+        display: none;
+      }
+
+      @media screen and (min-width: 768px) {
+        width: 48%;
+      }
+    }
+
+    &__link {
+      display: block;
+      overflow: hidden;
+
+      &:hover {
+        img {
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    &__img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+      transition: 0.4s;
+    }
+
+    &__name {
+      color: $white;
+      font-size: 20px;
+      font-weight: 400;
+
+      &.en {
+        font-family: $oswald;
+      }
+
+      &::before {
+        content: "Title : ";
+        font-family: $oswald;
+      }
+    }
+
+    &__tag-wrap {
+      display: flex;
+      gap: 20px;
+    }
+
+    &__tag {
+      color: $gray;
+      font-family: $oswald;
+      font-size: 12px;
+      position: relative;
+
+      &:first-of-type::before {
+        content: "Skill : ";
+      }
+
+      &:not(:last-of-type)::after{
+        content: "/";
+        position: absolute;
+        top: 50%;
+        right: -12px;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}

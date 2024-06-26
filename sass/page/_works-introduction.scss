@@ -1,0 +1,404 @@
+@use "../global" as *;
+
+#works-introduction {
+  .site-view {
+    margin: 80px calc(30 / 375 * 100%) 60px;
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 1s 0.5s forwards;
+
+    @media screen and (min-width: 768px) {
+      margin: 176px calc(80 / 768 * 100%) 60px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      margin: 176px auto 60px;
+      width: 90%;
+      max-width: 1160px;
+    }
+
+    &__scroll-area {
+      width: 100%;
+      aspect-ratio: 1920 / 1080;
+      padding-top: 1px;
+      position: relative;
+      overflow-y: scroll;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      user-select: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    &__img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    &__scrollbar {
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      right: -8px;
+      width: 1px;
+      height: 100%;
+      background: $white;
+      user-select: none;
+
+      &::before {
+        cursor: default;
+        content: "Scroll";
+        position: absolute;
+        right: -16px;
+        top: 0;
+        color: $white;
+        font-family: $oswald;
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        writing-mode: vertical-rl;
+      }
+
+      @media screen and (min-width: 768px) {
+        right: -15px;
+
+        &::before {
+          right: -24px;
+          font-size: 12px;
+        }
+      }
+    }
+
+    &__scrollbar-thumb {
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: $gray;
+      user-select: none;
+
+      @media screen and (min-width: 768px) {
+        width: 9px;
+        height: 9px;
+      }
+
+      @media screen and (min-width: 1024px) {
+        width: 11px;
+        height: 11px;
+      }
+    }
+  }
+
+  .introduction {
+    @include contents-width(1160px);
+    opacity: 0;
+    animation: fadeUp 1s 0.5s forwards;
+
+    &__ttl {
+      margin-bottom: 20px;
+      color: $white;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+
+      &.en {
+        font-family: $oswald;
+      }
+    }
+
+    &__tag-wrap {
+      margin-bottom: 30px;
+      display: flex;
+      gap: 20px;
+
+      @media screen and (min-width: 768px) {
+        margin-bottom: 70px;
+      }
+    }
+
+    &__tag {
+      color: $gray;
+      font-family: $oswald;
+      font-size: 11px;
+    }
+
+    &__txt {
+      margin-bottom: 40px;
+      color: $gray;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 2;
+      letter-spacing: 0.05em;
+
+      @media screen and (min-width: 768px) {
+        margin-bottom: 60px;
+        font-size: 14px;
+      }
+
+      @media screen and (min-width: 1024px) {
+        margin-bottom: 80px;
+      }
+    }
+
+    &__btn-wrap {
+      width: 60%;
+      max-width: 250px;
+      margin: 0 auto 40px;
+
+      @media screen and (min-width: 768px) {
+        margin: 0 auto 60px;
+      }
+
+      @media screen and (min-width: 1024px) {
+        margin: 0 auto 80px;
+      }
+    }
+
+    &__site-link {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 21px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid $white;
+      color: $white;
+      font-family: $oswald;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      position: relative;
+      transition: 0.4s ease-out;
+      z-index: 1;
+
+      .arrow {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(50%, -50%);
+        width: 52px;
+        height: 20px;
+        transition: 0.4s ease-out;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          right: 0;
+          transform: translateY(-50%);
+          width: 52px;
+          height: 1px;
+          background: $white;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: calc(50% - 4px);
+          right: 0;
+          transform: translateY(-50%);
+          background-color: $white;
+          width: 8px;
+          height: 8px;
+          clip-path: polygon(0 0, 0 100%, 100% 100%);
+        }
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: $white;
+        transform-origin: right top;
+        transform: scale(0, 1);
+        transition: transform 0.4s ease-out;
+        z-index: -1;
+      }
+
+      &:hover {
+        color: $black;
+
+        .arrow {
+          transform: translate(100%, -50%);
+        }
+
+        &::before {
+          transform-origin: left top;
+          transform: scale(1, 1);
+        }
+      }
+    }
+
+    &__table {
+      margin-bottom: 80px;
+
+      @media screen and (min-width: 768px) {
+        margin-bottom: 115px;
+      }
+
+      @media screen and (min-width: 1024px) {
+        margin-bottom: 120px;
+      }
+    }
+
+    &__table-group {
+      padding: 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-top: 1px solid $gray;
+
+      &:last-of-type {
+        border-bottom: 1px solid $gray;
+      }
+
+      @media screen and (min-width: 768px) {
+        padding: 36px 0;
+        flex-direction: row;
+        gap: 0;
+      }
+    }
+
+    &__table-heading {
+      color: $gray;
+      font-size: 14px;
+      line-height: 2;
+
+      @media screen and (min-width: 768px) {
+        width: 18%;
+        font-size: 16px;
+      }
+
+      @media screen and (min-width: 1024px) {
+        width: 15%;
+      }
+    }
+
+    &__table-description {
+      color: $white;
+      font-size: 14px;
+      line-height: 2;
+
+      @media screen and (min-width: 768px) {
+        width: 82%;
+        font-size: 16px;
+      }
+
+      @media screen and (min-width: 1024px) {
+        width: 85%;
+      }
+    }
+
+    &__table-link {
+      width: fit-content;
+      display: block;
+      color: #3ea6ff;
+      font-size: 14px;
+      line-height: 2;
+      text-decoration: none;
+      position: relative;
+      transition: 0.4s;
+      word-break: break-all;
+
+      @media screen and (min-width: 1024px) {
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+
+    &__nav-wrap {
+      margin-bottom: 80px;
+      padding-bottom: 120px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+
+      @media screen and (min-width: 768px) {
+        margin-bottom: 115px;
+        padding-bottom: 0;
+      }
+
+      @media screen and (min-width: 1024px) {
+        margin: 0 auto 120px;
+        max-width: 910px;
+      }
+    }
+
+    &__link-prev,
+    &__link-next {
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-decoration: none;
+
+      &:hover {
+        img {
+          transform: scale(1.1);
+        }
+      }
+
+      @media screen and (min-width: 768px) {
+        width: 30%;
+      }
+    }
+
+    &__link-img-wrap {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    &__link-img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      transition: 0.4s;
+    }
+
+    &__link-txt {
+      color: $white;
+      font-size: 12px;
+
+      @media screen and (min-width: 768px) {
+        font-size: 14px;
+      }
+
+      @media screen and (min-width: 1024px) {
+        font-size: 16px;
+      }
+
+      &.en {
+        font-family: $oswald;
+      }
+    }
+
+    &__link-works {
+      @include link-circle-btn(80px, 13px);
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+
+      @media screen and (min-width: 768px) {
+        @include link-circle-btn(130px, 18px);
+        position: static;
+        transform: none;
+      }
+
+      @media screen and (min-width: 1024px) {
+        @include link-circle-btn(223px, 24px);
+      }
+    }
+  }
+}
