@@ -946,7 +946,7 @@ body {
     padding: 160px 0 240px;
   }
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1024px) {
   #top .message {
     margin: 160px 0;
   }
