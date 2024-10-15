@@ -20,9 +20,9 @@
     &__scroll-area {
       width: 100%;
       aspect-ratio: 1920 / 1080;
-      padding-top: 1px;
       position: relative;
       overflow-y: scroll;
+      overflow-x: hidden;
       -ms-overflow-style: none;
       scrollbar-width: none;
       user-select: none;
@@ -32,10 +32,20 @@
       }
     }
 
+    &__scroll-img-wrapper {
+      width: 100%;
+      height: 100%;
+    }
+
     &__img {
       display: block;
       width: 100%;
       object-fit: cover;
+
+      &--horizontal {
+        width: auto;
+        height: 100%;
+      }
     }
 
     &__scrollbar {

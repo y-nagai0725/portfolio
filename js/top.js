@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function () {
       scrollTrigger: {
         trigger: scrollOuter,
         start: 'top top',
-        end: `${total * scrollValue}`,
+        end: () => "+=" + (total * scrollValue),
         pin: true,
         anticipatePin: 1,
         invalidateOnRefresh: true,
@@ -181,8 +181,9 @@ document.addEventListener('DOMContentLoaded', function () {
       scrollTrigger: {
         trigger: scrollOuter,
         start: 'top top',
-        end: `${total * scrollValue}`,
+        end: () => "+=" + (total * scrollValue),
         scrub: true,
+        invalidateOnRefresh: true,
       }
     });
   }

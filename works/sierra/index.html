@@ -16,7 +16,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&amp;family=Oswald:wght@400;700&amp;display=swap"
     rel="stylesheet">
-  <link href="../../css/style.css?20240626" rel="stylesheet" media="all">
+  <link href="../../css/style.css?20241016" rel="stylesheet" media="all">
 </head>
 
 <body id="works-introduction">
@@ -45,7 +45,10 @@
     <main class="main">
       <div class="site-view">
         <div id="site-view__scroll-area" class="site-view__scroll-area">
-          <img src="../../images/works_introduction/sierra_view.jpg" alt="Sierra Solution" class="site-view__img">
+          <div class="site-view__scroll-img-wrapper">
+            <img src="../../images/works_introduction/sierra_view.jpg" alt="Sierra Solution"
+              class="site-view__img site-view__img--horizontal">
+          </div>
         </div>
         <div id="site-view__scrollbar" class="site-view__scrollbar">
           <div id="site-view__scrollbar-thumb" class="site-view__scrollbar-thumb"></div>
@@ -61,7 +64,7 @@
         </div>
         <p class="introduction__txt">
           商品販促広告サービス会社サイト。<br>
-          レスポンシブ対応のコーディングを行った作品です。また、GSAPを使用した横スクロールを実装した作品です。
+          GSAPを使用した横スクロールを実装した作品です。<br>PC、SP用のデザインを作成し、レスポンシブ対応のコーディングを行いました。
         </p>
         <div class="introduction__btn-wrap">
           <a href="https://sierrasolution.mikanbako.jp/" class="introduction__site-link" target="_blank">WEB SITE<span
@@ -119,8 +122,7 @@
           <a href="../index.html" class="introduction__link-works">WORKS</a>
           <a href="../manroen/index.html" class="introduction__link-next">
             <div class="introduction__link-img-wrap">
-              <img src="../../images/works/thumbnail_manroen.jpg" alt="中華料理 満楼苑サムネイル"
-                class="introduction__link-img">
+              <img src="../../images/works/thumbnail_manroen.jpg" alt="中華料理 満楼苑サムネイル" class="introduction__link-img">
             </div>
             <span class="introduction__link-txt">中華料理 満楼苑</span>
           </a>
@@ -148,8 +150,11 @@
       <div id="footer__back-btn" class="footer__back-btn"></div>
     </footer>
   </div>
-  <script src="../../js/common.js?20240626"></script>
-  <script src="../../js/worksIntroduction.js?20240626"></script>
+  <script src="../../js/gsap.min.js"></script>
+  <script src="../../js/ScrollTrigger.min.js"></script>
+  <script src="../../js/common.js?20241016"></script>
+  <script src="../../js/worksIntroduction.js?20241016"></script>
+  <script src="../../js/worksIntroduction_horizontalScroll.js?20241016"></script>
 </body>
 
 </html>
