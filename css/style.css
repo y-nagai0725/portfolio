@@ -3099,7 +3099,7 @@ body {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  display: block;
+  display: inline-block;
   color: #3ea6ff;
   font-size: 14px;
   line-height: 2;
