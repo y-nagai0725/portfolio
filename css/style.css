@@ -2680,13 +2680,31 @@ body {
           flex-direction: column;
   gap: 18px;
   list-style-type: none;
+  position: relative;
 }
 #works .works-view__list.js-hidden {
   display: none;
 }
+#works .works-view__list.training::before {
+  content: "職業訓練作品";
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 8px;
+  color: #1D1D1D;
+  font-size: 14px;
+  background-color: #fff;
+  z-index: 1;
+}
 @media screen and (min-width: 768px) {
   #works .works-view__list {
     width: 48%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  #works .works-view__list.training::before {
+    padding: 10px;
+    font-size: 16px;
   }
 }
 #works .works-view__link {

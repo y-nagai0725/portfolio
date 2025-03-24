@@ -138,13 +138,33 @@
       flex-direction: column;
       gap: 18px;
       list-style-type: none;
+      position: relative;
 
       &.js-hidden {
         display: none;
       }
 
+      &.training::before {
+        content: "職業訓練作品";
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 8px;
+        color: $black;
+        font-size: 14px;
+        background-color: $white;
+        z-index: 1;
+      }
+
       @media screen and (min-width: 768px) {
         width: 48%;
+      }
+
+      @media screen and (min-width: 1024px) {
+        &.training::before {
+          padding: 10px;
+          font-size: 16px;
+        }
       }
     }
 
@@ -196,7 +216,7 @@
         content: "Skill : ";
       }
 
-      &:not(:last-of-type)::after{
+      &:not(:last-of-type)::after {
         content: "/";
         position: absolute;
         top: 50%;
