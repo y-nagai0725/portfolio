@@ -1607,6 +1607,49 @@ body {
     max-width: 340px;
   }
 }
+#top .skill__txt-link {
+  display: inline-block;
+  color: #BABABA;
+  text-decoration: none;
+  position: relative;
+  -webkit-transition: color 0.4s ease-out;
+  transition: color 0.4s ease-out;
+}
+#top .skill__txt-link::before {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #BABABA;
+}
+#top .skill__txt-link::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  background-color: #fff;
+  -webkit-transition: -webkit-transform 0.4s ease-out;
+  transition: -webkit-transform 0.4s ease-out;
+  transition: transform 0.4s ease-out;
+  transition: transform 0.4s ease-out, -webkit-transform 0.4s ease-out;
+}
+@media (any-hover: hover) {
+  #top .skill__txt-link:hover {
+    color: #fff;
+  }
+  #top .skill__txt-link:hover::after {
+    -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+  }
+}
 #top .skill__icon-wrap {
   -ms-flex-negative: 0;
       flex-shrink: 0;
@@ -1933,8 +1976,8 @@ body {
       -ms-flex-align: center;
           align-items: center;
   gap: 14px;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  -webkit-transition: opacity 0.4s ease-out;
+  transition: opacity 0.4s ease-out;
   opacity: 0;
   pointer-events: none;
   position: relative;

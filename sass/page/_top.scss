@@ -259,7 +259,9 @@
         background-size: contain;
         width: 18px;
         height: 25px;
-        animation: mvArrowMove 1.6s ease-in-out infinite, arrowHide 1.6s ease-out infinite;
+        animation:
+          mvArrowMove 1.6s ease-in-out infinite,
+          arrowHide 1.6s ease-out infinite;
       }
     }
   }
@@ -585,6 +587,47 @@
       }
     }
 
+    &__txt-link {
+      display: inline-block;
+      color: $paleGray;
+      text-decoration: none;
+      position: relative;
+      transition: color 0.4s ease-out;
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 4px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: $paleGray;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 4px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        transform-origin: left;
+        transform: scaleX(0);
+        background-color: $white;
+        transition: transform 0.4s ease-out;
+      }
+
+      @media (any-hover: hover) {
+        &:hover {
+          color: $white;
+
+          &::after {
+            transform: scaleX(1);
+          }
+        }
+      }
+    }
+
     &__icon-wrap {
       flex-shrink: 0;
       align-self: center;
@@ -776,7 +819,7 @@
       flex-direction: column;
       align-items: center;
       gap: 14px;
-      transition: 0.4s;
+      transition: opacity 0.4s ease-out;
       opacity: 0;
       pointer-events: none;
       position: relative;
@@ -825,7 +868,7 @@
       font-weight: 700;
       letter-spacing: -0.03em;
       cursor: pointer;
-      transition: background-color .4s ease-out;
+      transition: background-color 0.4s ease-out;
 
       @media screen and (min-width: 768px) {
         width: 48px;
@@ -920,7 +963,9 @@
         background-size: contain;
         width: 14px;
         height: 18px;
-        animation: worksArrowMove 1.6s ease-in-out infinite, arrowHide 1.6s ease-out infinite;
+        animation:
+          worksArrowMove 1.6s ease-in-out infinite,
+          arrowHide 1.6s ease-out infinite;
       }
 
       @media screen and (min-width: 768px) {
@@ -967,7 +1012,7 @@
     }
 
     &__ttl {
-      @include section-title(center)
+      @include section-title(center);
     }
 
     &__txt {
