@@ -6,8 +6,10 @@ const height = canvasWrapper.offsetHeight;
 
 // レンダラーを作成
 const renderer = new THREE.WebGLRenderer({
-  canvas: document.querySelector('#canvas')
+  canvas: document.querySelector('#canvas'),
+  antialias: true,
 });
+renderer.setClearColor(new THREE.Color("#1D1D1D"));
 renderer.setSize(width, height);
 renderer.setPixelRatio(window.devicePixelRatio);
 
@@ -37,7 +39,7 @@ light.position.set(1, 1, 1); // ライトの方向
 // シーンに追加
 scene.add(light);
 
-let loopAnimationId;
+let loopAnimationId = null;
 
 function tick() {
   texture.offset.x = Math.random();
@@ -91,7 +93,15 @@ function animateCanvas(scrollTarget) {
     scrollTo: {
       y: scrollTarget,
     },
+    onStart: () => {
+      disallowWindowScroll();
+      if (loopAnimationId === null) {
+        tick();
+      }
+    },
     onComplete: () => {
+      cancelAnimationFrame(loopAnimationId);
+      loopAnimationId = null;
       if (enterAnimation) {
         enterAnimation.kill();
       }
@@ -114,12 +124,6 @@ function animateCanvas(scrollTarget) {
         opacity: 0,
       }
     },
-    onStart: () => {
-      tick();
-    },
-    onComplete: () => {
-      cancelAnimationFrame(loopAnimationId);
-    }
   }, "<");
 
   return animation;
@@ -130,11 +134,23 @@ ScrollTrigger.create({
   start: "top bottom",
   end: "top top",
   onEnter: () => {
-    disallowWindowScroll();
     enterAnimation = animateCanvas(".message");
   },
   onEnterBack: () => {
-    disallowWindowScroll();
     enterBackAnimation = animateCanvas(".mv");
   }
-})
+});
+
+// windowのリサイズ処理
+const onResize = () => {
+  const width = canvasWrapper.offsetWidth;
+  const height = canvasWrapper.offsetHeight;
+
+  // rendererを更新
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(width, height);
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+};
+window.addEventListener('resize', onResize);
