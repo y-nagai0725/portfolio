@@ -14,16 +14,21 @@ void main() {
 const fragmentSource = `
 uniform sampler2D uTexture;
 uniform float uShift;
+uniform float uPercent;
 
 varying vec2 vUv;
 
+vec3 bgColor = vec3(0.114,0.114,0.114);
+
 void main() {
   vec2 uv = vUv;
-  float shift = uShift * 0.25;
+  float shift = uShift * 0.2;
 
   vec2 uvOffset = vec2( shift, 0.0 );
 
   vec3 color = texture2D(uTexture, uv + uvOffset).rgb;
+
+  color = mix(color, bgColor, uPercent);
   gl_FragColor = vec4( color, 1.0 );
 }
 `;
@@ -65,8 +70,8 @@ camera.matrixAutoUpdate = false;
 //テクスチャ
 const texture = new THREE.TextureLoader().load("../images/top/canvas_ray.jpg");
 texture.colorSpace = THREE.SRGBColorSpace;
-texture.wrapS = THREE.RepeatWrapping;
-texture.wrapT = THREE.RepeatWrapping;
+texture.wrapS = THREE.MirroredRepeatWrapping;
+texture.wrapT = THREE.MirroredRepeatWrapping;
 
 // uniformの定義
 const uniforms = {
@@ -74,6 +79,9 @@ const uniforms = {
     value: texture,
   },
   uShift: {
+    value: 0.0,
+  },
+  uPercent: {
     value: 0.0,
   },
 };
@@ -135,7 +143,7 @@ function animateCanvas(scrollTarget) {
   }
 
   const animation = gsap.timeline().to(window, {
-    duration: 1.4,
+    duration: 1.2,
     ease: "power2.out",
     scrollTo: {
       y: scrollTarget,
@@ -148,6 +156,7 @@ function animateCanvas(scrollTarget) {
     },
     onUpdate: () => {
       uniforms.uShift.value = Math.random();
+      uniforms.uPercent.value = animation.progress();
     },
     onComplete: () => {
       cancelAnimationFrame(loopAnimationId);
@@ -160,21 +169,7 @@ function animateCanvas(scrollTarget) {
       }
       allowWindowScroll();
     }
-  }).to(canvasWrapper, {
-    duration: 1.4,
-    ease: "power2.out",
-    keyframes: {
-      '0%': {
-        opacity: 0,
-      },
-      '50%': {
-        opacity: 1,
-      },
-      '100%': {
-        opacity: 0,
-      }
-    },
-  }, "<");
+  });
 
   return animation;
 }
@@ -182,7 +177,7 @@ function animateCanvas(scrollTarget) {
 ScrollTrigger.create({
   trigger: ".message",
   start: "top bottom",
-  end: "top top",
+  end: "top top+=10%",
   onEnter: () => {
     enterAnimation = animateCanvas(".message");
   },
