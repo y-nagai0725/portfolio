@@ -1,49 +1,96 @@
 import * as THREE from "./three.module.js";
 
+// 頂点シェーダーのソース
+const vertexSource = `
+varying vec2 vUv;
+
+void main() {
+  vUv = uv;
+  gl_Position = vec4( position, 1.0 );
+}
+`;
+
+// ピクセルシェーダーのソース
+const fragmentSource = `
+uniform sampler2D uTexture;
+uniform float uShift;
+
+varying vec2 vUv;
+
+void main() {
+  vec2 uv = vUv;
+  float shift = uShift * 0.25;
+
+  vec2 uvOffset = vec2( shift, 0.0 );
+
+  vec3 color = texture2D(uTexture, uv + uvOffset).rgb;
+  gl_FragColor = vec4( color, 1.0 );
+}
+`;
+
+//
 const canvasWrapper = document.querySelector(".canvas-wrapper");
-const width = canvasWrapper.offsetWidth;
-const height = canvasWrapper.offsetHeight;
+
+// windowのサイズを取得
+const getWindowSize = () => {
+  const width = canvasWrapper.offsetWidth;
+  const height = canvasWrapper.offsetHeight;
+  return {
+    width,
+    height,
+  };
+};
+
+const windowSize = getWindowSize();
+
+//canvas
+const canvas = document.querySelector("#canvas");
 
 // レンダラーを作成
 const renderer = new THREE.WebGLRenderer({
-  canvas: document.querySelector('#canvas'),
+  canvas: canvas,
   antialias: true,
 });
 renderer.setClearColor(new THREE.Color("#1D1D1D"));
-renderer.setSize(width, height);
+renderer.setSize(windowSize.width, windowSize.height);
 renderer.setPixelRatio(window.devicePixelRatio);
 
 // シーンを作成
 const scene = new THREE.Scene();
 
-// カメラを作成(画角, アスペクト比, 描画開始距離, 描画終了距離)
-const camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+// cameraの作成
+const camera = new THREE.OrthographicCamera();
+camera.matrixAutoUpdate = false;
 
-// カメラの初期座標を設定（X座標, Y座標, Z座標）
-camera.position.set(0, 0, 1000);
-
-// 箱を作成
-const texture = new THREE.TextureLoader().load("../images/top/canvas_ray.jpg");// テクスチャ
+//テクスチャ
+const texture = new THREE.TextureLoader().load("../images/top/canvas_ray.jpg");
 texture.colorSpace = THREE.SRGBColorSpace;
 texture.wrapS = THREE.RepeatWrapping;
 texture.wrapT = THREE.RepeatWrapping;
-const geometry = new THREE.PlaneGeometry(width, height, 1, 1); //形状
-const material = new THREE.MeshPhysicalMaterial({ map: texture }); //素材
-const mesh = new THREE.Mesh(geometry, material);//geometry, materialからメッシュ作成
-scene.add(mesh);
 
-// 平行光源
-const light = new THREE.DirectionalLight(0xb0ccff);
-light.intensity = 4; // 光の強さ
-light.position.set(1, 1, 1); // ライトの方向
-// シーンに追加
-scene.add(light);
+// uniformの定義
+const uniforms = {
+  uTexture: {
+    value: texture,
+  },
+  uShift: {
+    value: 0.0,
+  },
+};
+
+// planeの作成
+const geometry = new THREE.PlaneGeometry(2, 2);
+const material = new THREE.ShaderMaterial({
+  uniforms: uniforms,
+  vertexShader: vertexSource,
+  fragmentShader: fragmentSource,
+});
+const plane = new THREE.Mesh(geometry, material);
+scene.add(plane);
 
 let loopAnimationId = null;
 
 function tick() {
-  texture.offset.x = Math.random();
-  texture.needsUpdate = true;
 
   loopAnimationId = requestAnimationFrame(tick);
 
@@ -99,6 +146,9 @@ function animateCanvas(scrollTarget) {
         tick();
       }
     },
+    onUpdate: () => {
+      uniforms.uShift.value = Math.random();
+    },
     onComplete: () => {
       cancelAnimationFrame(loopAnimationId);
       loopAnimationId = null;
@@ -143,14 +193,10 @@ ScrollTrigger.create({
 
 // windowのリサイズ処理
 const onResize = () => {
-  const width = canvasWrapper.offsetWidth;
-  const height = canvasWrapper.offsetHeight;
+  const windowSize = getWindowSize();
 
   // rendererを更新
   renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize(width, height);
-
-  camera.aspect = width / height;
-  camera.updateProjectionMatrix();
+  renderer.setSize(windowSize.width, windowSize.height);
 };
 window.addEventListener('resize', onResize);
