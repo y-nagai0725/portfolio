@@ -97,9 +97,6 @@ document.addEventListener('DOMContentLoaded', function () {
   //ヘッダー
   const header = document.getElementById('header');
 
-  //背景動画ラッパー
-  const videoWrap = document.getElementById('bg__video-wrap');
-
   //キャッチコピー：日本語
   const catchcopyJa = document.getElementById('mv__catchcopy-ja');
 
@@ -250,7 +247,6 @@ document.addEventListener('DOMContentLoaded', function () {
     //ページ最上部にいるときのみ開始を少し遅らせる
     if (window.scrollY === 0) {
       setTimeout(() => {
-        videoWrap.classList.add('js-active');
         catchcopyJa.classList.add('js-active');
         catchcopyEnImg.classList.add('js-active');
         scrollBtn.classList.add('js-active');
@@ -259,8 +255,6 @@ document.addEventListener('DOMContentLoaded', function () {
         header.classList.add('js-show');
       }, 2000);
     } else {
-      videoWrap.classList.add('js-completed');
-      videoWrap.classList.add('js-active');
       catchcopyJa.classList.add('js-completed');
       catchcopyJa.classList.add('js-active');
       catchcopyEnImg.classList.add('js-completed');
@@ -291,29 +285,6 @@ document.addEventListener('DOMContentLoaded', function () {
       setScrollNavLink(scrollValue);
     });
   }
-
-  //mvのスクロールボタンのスムーススクロール
-  document.getElementById('mv__scroll-btn').addEventListener('click', function (e) {
-    e.preventDefault();
-    gsap.to(window, {
-      duration: 0.8,
-      ease: 'ease-out',
-      scrollTo: {
-        y: '#message',
-      }
-    });
-  });
-
-  //背景のビデオ表示を徐々に非表示
-  gsap.to(videoWrap, {
-    autoAlpha: 0,
-    scrollTrigger: {
-      trigger: '.message',
-      start: 'top top',
-      end: 'bottom center-=100px',
-      scrub: true,
-    }
-  });
 
   //スクロールイベント時処理
   window.addEventListener('scroll', function () {

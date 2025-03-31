@@ -43,15 +43,11 @@
       </div>
     </header>
     <main class="main">
-      <div class="canvas-wrapper">
+      <div class="ray-canvas-wrapper">
         <canvas id="canvas"></canvas>
       </div>
-      <div id="bg" class="bg">
-        <div id="bg__video-wrap" class="bg__video-wrap">
-          <video class="bg__video" playsinline muted autoplay loop>
-            <source src="images/top/bg_video.mp4" type="video/mp4">
-          </video>
-        </div>
+      <div class="mv-canvas-wrapper">
+        <canvas id="mv-canvas"></canvas>
       </div>
       <div class="mv">
         <div class="mv__catchcopy-ja-wrap">
@@ -67,12 +63,12 @@
             alt="ADVANCE TO THE NEXT LEVEL">
         </picture>
         <div class="mv__btn-wrap">
-          <a href="#message" id="mv__scroll-btn" class="mv__scroll-btn">
+          <div id="mv__scroll-btn" class="mv__scroll-btn">
             <span class="mv__scroll-txt">
               SCROLL<br>
               DOWN
             </span>
-          </a>
+          </div>
         </div>
       </div>
       <div id="message" class="message">
@@ -801,7 +797,8 @@
   <script src="js/common.js?20241016"></script>
   <script src="js/top.js?20241016"></script>
   <script type="module" src="js/three.module.js"></script>
-  <script type="module" src="js/top-canvas.js"></script>
+  <script type="module" src="js/top-ray-canvas.js"></script>
+  <script type="module" src="js/top-mv-canvas.js"></script>
 </body>
 
 </html>

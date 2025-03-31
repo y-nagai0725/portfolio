@@ -27,14 +27,15 @@ void main() {
   vec2 uvOffset = vec2( shift, 0.0 );
 
   vec3 color = texture2D(uTexture, uv + uvOffset).rgb;
-
   color = mix(color, bgColor, uPercent);
+
   gl_FragColor = vec4( color, 1.0 );
 }
 `;
 
 //
-const canvasWrapper = document.querySelector(".canvas-wrapper");
+const canvasWrapper = document.querySelector(".ray-canvas-wrapper");
+const mvCanvasWrapper = document.querySelector(".mv-canvas-wrapper");
 
 // windowのサイズを取得
 const getWindowSize = () => {
@@ -133,7 +134,7 @@ function disallowWindowScroll() {
 let enterAnimation;
 let enterBackAnimation;
 
-function animateCanvas(scrollTarget) {
+function animateCanvas(scrollTarget, type) {
   if (enterAnimation) {
     enterAnimation.kill();
   }
@@ -149,6 +150,9 @@ function animateCanvas(scrollTarget) {
       y: scrollTarget,
     },
     onStart: () => {
+      if (type === "enter") {
+        mvCanvasWrapper.classList.add("hidden");
+      }
       disallowWindowScroll();
       if (loopAnimationId === null) {
         tick();
@@ -159,6 +163,9 @@ function animateCanvas(scrollTarget) {
       uniforms.uPercent.value = animation.progress();
     },
     onComplete: () => {
+      if (type === "enterBack") {
+        mvCanvasWrapper.classList.remove("hidden");
+      }
       cancelAnimationFrame(loopAnimationId);
       loopAnimationId = null;
       if (enterAnimation) {
@@ -177,12 +184,12 @@ function animateCanvas(scrollTarget) {
 ScrollTrigger.create({
   trigger: ".message",
   start: "top bottom",
-  end: "top top+=10%",
+  end: "top top+=20%",
   onEnter: () => {
-    enterAnimation = animateCanvas(".message");
+    enterAnimation = animateCanvas(".message", "enter");
   },
   onEnterBack: () => {
-    enterBackAnimation = animateCanvas(".mv");
+    enterBackAnimation = animateCanvas(".mv", "enterBack");
   }
 });
 

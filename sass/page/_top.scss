@@ -1,51 +1,24 @@
 @use "../global" as *;
 
 #top {
-  .canvas-wrapper {
+  .ray-canvas-wrapper {
     position: fixed;
     width: 100%;
     height: 100vh;
     z-index: -1;
   }
 
-  .bg {
-    display: none;
+  .mv-canvas-wrapper {
     position: fixed;
     width: 100%;
     height: 100vh;
-    overflow: hidden;
     z-index: -1;
+    opacity: 1;
+    transition: opacity 0.4s ease-out;
 
-    &__video-wrap {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-
-      &::before {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        transition: 1.4s;
-        background: $black;
-        opacity: 1;
-      }
-
-      &.js-completed::before {
-        transition: none;
-      }
-
-      &.js-active::before {
-        opacity: 0.85;
-      }
-    }
-
-    &__video {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    &.hidden {
+      opacity: 0;
+      z-index: -2;
     }
   }
 
