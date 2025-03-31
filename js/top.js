@@ -286,6 +286,18 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  //mvのスクロールボタンのスムーススクロール
+  document.getElementById('mv__scroll-btn').addEventListener('click', function (e) {
+    e.preventDefault();
+    gsap.to(window, {
+      duration: 0.8,
+      ease: 'ease-out',
+      scrollTo: {
+        y: '#message',
+      }
+    });
+  });
+
   //スクロールイベント時処理
   window.addEventListener('scroll', function () {
     drawSVG();

@@ -20,6 +20,8 @@ varying vec2 vUv;
 
 vec3 bgColor = vec3(0.114,0.114,0.114);
 
+const float PI = 3.14;
+
 void main() {
   vec2 uv = vUv;
   float shift = uShift * 0.2;
@@ -27,7 +29,10 @@ void main() {
   vec2 uvOffset = vec2( shift, 0.0 );
 
   vec3 color = texture2D(uTexture, uv + uvOffset).rgb;
-  color = mix(color, bgColor, uPercent);
+
+  float percent = abs(cos(PI * uPercent));
+
+  color = mix(color, bgColor, percent);
 
   gl_FragColor = vec4( color, 1.0 );
 }
@@ -103,93 +108,32 @@ function tick() {
 
   loopAnimationId = requestAnimationFrame(tick);
 
+  uniforms.uShift.value = Math.random();
+
   // レンダリング
   renderer.render(scene, camera);
-}
-
-/**
-   * イベント禁止用処理
-   * @param {Event} e イベントオブジェクト
-   */
-function noScroll(e) {
-  e.preventDefault();
-}
-
-/**
- * スクロール許可（スクロール禁止処理解除）
- */
-function allowWindowScroll() {
-  document.removeEventListener('touchmove', noScroll);
-  document.removeEventListener('wheel', noScroll);
-}
-
-/**
- * スクロール禁止処理設定
- */
-function disallowWindowScroll() {
-  document.addEventListener('touchmove', noScroll, { passive: false });
-  document.addEventListener('wheel', noScroll, { passive: false });
-}
-
-let enterAnimation;
-let enterBackAnimation;
-
-function animateCanvas(scrollTarget, type) {
-  if (enterAnimation) {
-    enterAnimation.kill();
-  }
-
-  if (enterBackAnimation) {
-    enterBackAnimation.kill();
-  }
-
-  const animation = gsap.timeline().to(window, {
-    duration: 1.2,
-    ease: "power2.out",
-    scrollTo: {
-      y: scrollTarget,
-    },
-    onStart: () => {
-      if (type === "enter") {
-        mvCanvasWrapper.classList.add("hidden");
-      }
-      disallowWindowScroll();
-      if (loopAnimationId === null) {
-        tick();
-      }
-    },
-    onUpdate: () => {
-      uniforms.uShift.value = Math.random();
-      uniforms.uPercent.value = animation.progress();
-    },
-    onComplete: () => {
-      if (type === "enterBack") {
-        mvCanvasWrapper.classList.remove("hidden");
-      }
-      cancelAnimationFrame(loopAnimationId);
-      loopAnimationId = null;
-      if (enterAnimation) {
-        enterAnimation.kill();
-      }
-      if (enterBackAnimation) {
-        enterBackAnimation.kill();
-      }
-      allowWindowScroll();
-    }
-  });
-
-  return animation;
 }
 
 ScrollTrigger.create({
   trigger: ".message",
   start: "top bottom",
-  end: "top top+=20%",
+  end: "center top",
   onEnter: () => {
-    enterAnimation = animateCanvas(".message", "enter");
+    mvCanvasWrapper.classList.add("hidden");
+    tick();
   },
   onEnterBack: () => {
-    enterBackAnimation = animateCanvas(".mv", "enterBack");
+    tick();
+  },
+  onUpdate: (self) => {
+    uniforms.uPercent.value = self.progress;
+  },
+  onLeave: () => {
+    cancelAnimationFrame(loopAnimationId);
+  },
+  onLeaveBack: () => {
+    mvCanvasWrapper.classList.remove("hidden");
+    cancelAnimationFrame(loopAnimationId);
   }
 });
 

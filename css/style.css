@@ -899,12 +899,11 @@ body {
   height: 100vh;
   z-index: -1;
   opacity: 1;
-  -webkit-transition: opacity 0.4s ease-out;
-  transition: opacity 0.4s ease-out;
+  -webkit-transition: opacity 0.6s ease-out;
+  transition: opacity 0.6s ease-out;
 }
 #top .mv-canvas-wrapper.hidden {
   opacity: 0;
-  z-index: -2;
 }
 #top .mv {
   position: relative;
