@@ -112,6 +112,12 @@ document.addEventListener('DOMContentLoaded', function () {
   //作品ナビゲーション
   const worksNavWrap = document.getElementById('works__nav-wrap');
 
+  //mvの背景アニメーションcanvas
+  const mvCanvasWrapper = document.querySelector(".mv-canvas-wrapper");
+
+  //messageセクション
+  const messageSection = document.getElementById("message");
+
   //現在表示している作品番号
   let currentIndex = -1;
 
@@ -250,6 +256,7 @@ document.addEventListener('DOMContentLoaded', function () {
         catchcopyJa.classList.add('js-active');
         catchcopyEnImg.classList.add('js-active');
         scrollBtn.classList.add('js-active');
+        mvCanvasWrapper.classList.remove("hidden");
       }, 800);
       setTimeout(() => {
         header.classList.add('js-show');
@@ -262,6 +269,9 @@ document.addEventListener('DOMContentLoaded', function () {
       scrollBtn.classList.add('js-completed');
       scrollBtn.classList.add('js-active');
       header.classList.add('js-show');
+      if(window.scrollY < messageSection.getBoundingClientRect().top + window.scrollY - window.innerHeight){
+        mvCanvasWrapper.classList.remove("hidden");
+      }
     }
   }
 
