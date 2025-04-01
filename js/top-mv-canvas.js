@@ -1,6 +1,6 @@
 import * as THREE from "./three.module.js";
 
-//
+// canvasWrapper
 const canvasWrapper = document.querySelector(".mv-canvas-wrapper");
 
 // windowのサイズを取得
@@ -15,7 +15,7 @@ const getWindowSize = () => {
 
 const windowSize = getWindowSize();
 
-//canvas
+// canvas
 const canvas = document.querySelector("#mv-canvas");
 
 // レンダラーを作成
@@ -32,7 +32,7 @@ const scene = new THREE.Scene();
 
 //カメラ
 const camera = new THREE.PerspectiveCamera(40, windowSize.width / windowSize.height, 0.1, 10000);
-camera.position.set(-2, 0, 7);
+camera.position.set(-1.8, 0, 7);
 camera.lookAt(scene.position);
 scene.add(camera);
 
@@ -46,7 +46,8 @@ scene.add(light_2);
 
 scene.fog = new THREE.FogExp2(0x000000, 0.1);
 
-const texture = new THREE.TextureLoader().load("../images/top/canvas_ray.jpg");
+//テクスチャ
+const texture = new THREE.TextureLoader().load("../images/top/canvas_mv.jpg");
 texture.colorSpace = THREE.SRGBColorSpace;
 texture.wrapS = THREE.RepeatWrapping;
 texture.wrapT = THREE.MirroredRepeatWrapping;
@@ -56,10 +57,11 @@ const geometry = new THREE.CylinderGeometry(0.8, 0.8, 30, 32, 1, false);
 
 const cylinder = new THREE.Mesh(geometry, material);
 material.side = THREE.BackSide;
-cylinder.position.x = -2;
+cylinder.position.x = -1.8;
 cylinder.rotation.x = Math.PI / 2;
 scene.add(cylinder);
 
+//描画処理
 function tick() {
 
   requestAnimationFrame(tick);
@@ -67,7 +69,7 @@ function tick() {
   texture.offset.x -= 0.0001;
   texture.offset.x %= 1;
 
-  texture.offset.y -= 0.02;
+  texture.offset.y -= 0.01;
   texture.offset.y %= 1;
   texture.needsUpdate = true;
 
@@ -75,6 +77,7 @@ function tick() {
   renderer.render(scene, camera);
 }
 
+//ウィンドウリサイズ時処理
 const onResize = () => {
   const windowSize = getWindowSize();
 

@@ -25,7 +25,7 @@ const float PI = 3.14;
 
 void main() {
   vec2 uv = vUv;
-  float shift = uShift * 0.2 + uPlus;
+  float shift = uShift * 0.25 + uPlus;
 
   vec2 uvOffset = vec2( shift, 0.0 );
 
@@ -39,7 +39,7 @@ void main() {
 }
 `;
 
-//
+//canvasWrapper
 const canvasWrapper = document.querySelector(".ray-canvas-wrapper");
 const mvCanvasWrapper = document.querySelector(".mv-canvas-wrapper");
 
@@ -106,8 +106,10 @@ const material = new THREE.ShaderMaterial({
 const plane = new THREE.Mesh(geometry, material);
 scene.add(plane);
 
+//loop処理制御用
 let loopAnimationId = null;
 
+//描画処理
 function tick() {
 
   loopAnimationId = requestAnimationFrame(tick);
@@ -118,6 +120,7 @@ function tick() {
   renderer.render(scene, camera);
 }
 
+//描画処理キャンセル
 function cancelTick(animationId) {
   cancelAnimationFrame(animationId);
 
@@ -126,12 +129,14 @@ function cancelTick(animationId) {
   renderer.render(scene, camera);
 }
 
+//進捗度差分
 let progressValue = 0.0;
 
+//描画アニメーション切り替え用ScrollTrigger
 ScrollTrigger.create({
   trigger: ".message",
   start: "top bottom",
-  end: "center top",
+  end: "center-=15% top",
   onEnter: () => {
     mvCanvasWrapper.classList.add("hidden");
     tick();
