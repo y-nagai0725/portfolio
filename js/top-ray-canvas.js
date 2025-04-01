@@ -15,6 +15,7 @@ const fragmentSource = `
 uniform sampler2D uTexture;
 uniform float uShift;
 uniform float uPercent;
+uniform float uPlus;
 
 varying vec2 vUv;
 
@@ -24,7 +25,7 @@ const float PI = 3.14;
 
 void main() {
   vec2 uv = vUv;
-  float shift = uShift * 0.2;
+  float shift = uShift * 0.2 + uPlus;
 
   vec2 uvOffset = vec2( shift, 0.0 );
 
@@ -90,6 +91,9 @@ const uniforms = {
   uPercent: {
     value: 0.0,
   },
+  uPlus: {
+    value: 0.0,
+  }
 };
 
 // planeの作成
@@ -114,6 +118,16 @@ function tick() {
   renderer.render(scene, camera);
 }
 
+function cancelTick(animationId) {
+  cancelAnimationFrame(animationId);
+
+  //描画を初期状態へ
+  uniforms.uPercent.value = 0.0;
+  renderer.render(scene, camera);
+}
+
+let progressValue = 0.0;
+
 ScrollTrigger.create({
   trigger: ".message",
   start: "top bottom",
@@ -127,13 +141,20 @@ ScrollTrigger.create({
   },
   onUpdate: (self) => {
     uniforms.uPercent.value = self.progress;
+    if (progressValue === 0.0) {
+      progressValue = self.progress;
+    } else {
+      const plusValue = (progressValue - self.progress) * 10;
+      uniforms.uPlus.value = plusValue;
+      progressValue = self.progress;
+    }
   },
   onLeave: () => {
-    cancelAnimationFrame(loopAnimationId);
+    cancelTick(loopAnimationId);
   },
   onLeaveBack: () => {
     mvCanvasWrapper.classList.remove("hidden");
-    cancelAnimationFrame(loopAnimationId);
+    cancelTick(loopAnimationId);
   }
 });
 
