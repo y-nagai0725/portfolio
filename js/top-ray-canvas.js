@@ -136,7 +136,7 @@ let progressValue = 0.0;
 ScrollTrigger.create({
   trigger: ".message",
   start: "top bottom",
-  end: "center-=15% top",
+  end: "center top",
   onEnter: () => {
     mvCanvasWrapper.classList.add("hidden");
     tick();
