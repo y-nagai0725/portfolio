@@ -1,4 +1,5 @@
 # Portfolio
+![Image](https://github.com/user-attachments/assets/63869571-f1e4-444f-91ba-e765a33ca402)
 
 # 概要
 * 自己紹介、保有スキル、制作物紹介の為のページです。
