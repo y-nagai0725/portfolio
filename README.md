@@ -63,7 +63,7 @@
 （写真と名前はここでは隠しています。）
 
 ### SKILLセクション
-![Image](https://github.com/user-attachments/assets/48c3f6ca-0245-4cfe-acff-5b31fc4cbdc6)
+![Image](https://github.com/user-attachments/assets/c5c03899-56f8-446a-9e40-c5b4e6278fe7)
 
 スキルのアイコンを描画するアニメーションを実装しました。
 
