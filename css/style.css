@@ -3034,8 +3034,7 @@ body {
   background-color: #fff;
   width: 8px;
   height: 8px;
-  -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%);
-          clip-path: polygon(0 0, 0 100%, 100% 100%);
+  clip-path: polygon(0 0, 0 100%, 100% 100%);
 }
 #works-introduction .introduction__site-link::before {
   content: "";
