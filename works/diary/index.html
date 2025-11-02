@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta name="robots" content="noindex, nofollow">
-  <title>NAGAI YOSHITAKA PORTFOLIO | Home Snap</title>
+  <title>NAGAI YOSHITAKA PORTFOLIO | Diary 日記帳アプリ</title>
   <link rel="icon" href="../../images/common/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="../../images/common/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,84 +45,84 @@
     <main class="main">
       <div class="site-view">
         <div id="site-view__scroll-area" class="site-view__scroll-area">
-          <img src="../../images/works_introduction/homesnap_view.jpg" alt="Home Snap" class="site-view__img">
+          <img src="../../images/works_introduction/diary_view.jpg" alt="Diary 日記帳アプリ全体画像" class="site-view__img">
         </div>
         <div id="site-view__scrollbar" class="site-view__scrollbar">
           <div id="site-view__scrollbar-thumb" class="site-view__scrollbar-thumb"></div>
         </div>
       </div>
       <div class="introduction">
-        <h2 class="introduction__ttl en">Home Snap</h2>
+        <h2 class="introduction__ttl en">Diary</h2>
         <div class="introduction__tag-wrap">
-          <span class="introduction__tag">HTML</span>
-          <span class="introduction__tag">JavaScript</span>
+          <span class="introduction__tag">Node.js</span>
+          <span class="introduction__tag">Express</span>
+          <span class="introduction__tag">Vue</span>
           <span class="introduction__tag">Responsive</span>
-          <span class="introduction__tag">GSAP</span>
+          <span class="introduction__tag">アプリ</span>
         </div>
         <p class="introduction__txt">
-          架空のサービスの10周年記念webサイト。<br>
-          GSAPを使用したアニメーションの練習の為に作成しました。
+          日々の出来事を記録し、AI (Gemini API)
+          がコメントをくれる機能を持つシンプルなWeb日記帳アプリケーションです。<br>フロントエンドはVue.js、バックエンドはNode.js/Expressを使用して構築されています。ユーザー登録・ログイン機能、日記のCRUD操作、検索機能などを備えています。
         </p>
         <div class="introduction__btn-wrap">
-          <a href="https://homesnap.mikanbako.jp/" class="introduction__site-link" target="_blank">WEB SITE<span
+          <a href="https://diary.mikanbako.jp/" class="introduction__site-link" target="_blank">WEB SITE<span
               class="arrow"></span></a>
         </div>
         <dl class="introduction__table">
           <div class="introduction__table-group">
             <dt class="introduction__table-heading">POINT</dt>
             <dd class="introduction__table-description">
-              スクロール連動のアニメーションをGSAPを使用して多く作成しました。<br>
-              仮にこのサイトが10周年から11周年になっても使用することを考え、htmlを増やすだけで動作するような仕組みでjavascriptのコードを書きました。
-            </dd>
-          </div>
-          <div class="introduction__table-group">
-            <dt class="introduction__table-heading">ページ数</dt>
-            <dd class="introduction__table-description">
-              1ページ
+              ・Gemini API連携<br>
+              ユーザーが記述した日記の内容に基づき、AI (Gemini API)
+              がコメントを生成する機能を実装しました。ユーザーはAIの性別や関係性、コメントスタイルを設定でき、よりパーソナルな体験を得られます。<br><br>
+              ・検索機能付き日記一覧<br>
+              ページネーション、キーワード検索（デバウンス処理付き）、日付による絞り込み（年月/年月日）、並び替え（昇順/降順）といった、実用的な一覧表示機能を実装しました。<br><br>
+              ・状態管理とエラーハンドリング<br>
+              ログイン状態やAPI通信中のローディング状態をグローバルに管理し、UIに反映させています。また、axiosインターセプターで認証エラー時の自動ログアウトや、APIエラー発生時のモーダル表示など、堅牢性も意識しました。
             </dd>
           </div>
           <div class="introduction__table-group">
             <dt class="introduction__table-heading">使用技術</dt>
             <dd class="introduction__table-description">
-              HTML / CSS / JavaScript / GSAP / swiper.js
+              Node.js / Express / Prisma / JWT / Vue.js(v3) / axios / Gemini API
             </dd>
           </div>
           <div class="introduction__table-group">
             <dt class="introduction__table-heading">URL</dt>
             <dd class="introduction__table-description">
-              <a href="https://homesnap.mikanbako.jp/" class="introduction__table-link"
-                target="_blank">https://homesnap.mikanbako.jp/</a>
+              <a href="https://diary.mikanbako.jp/" class="introduction__table-link"
+                target="_blank">https://diary.mikanbako.jp/</a>
             </dd>
           </div>
           <div class="introduction__table-group">
             <dt class="introduction__table-heading">Github</dt>
             <dd class="introduction__table-description">
-              <a href="https://github.com/y-nagai0725/HomeSnap" class="introduction__table-link"
-                target="_blank">https://github.com/y-nagai0725/HomeSnap</a>
+              <a href="https://github.com/y-nagai0725/diary" class="introduction__table-link"
+                target="_blank">https://github.com/y-nagai0725/diary</a>
             </dd>
           </div>
           <div class="introduction__table-group">
             <dt class="introduction__table-heading">デザイン</dt>
             <dd class="introduction__table-description">
-              <a href="https://www.figma.com/design/O07zILaVA9NIQKxaahI3ZX/HomeSnap?node-id=0-1&t=7doAIWqjAzAALk0M-1"
+              <a href="https://www.figma.com/design/PM0PUujqI4QhWLHKSYZXlY/Diary-%E6%97%A5%E8%A8%98%E5%B8%B3%E3%82%A2%E3%83%97%E3%83%AA?node-id=484-46&t=cWSxYmFgpcASiqE6-1"
                 class="introduction__table-link" target="_blank">Figmaページ（閲覧のみ可能です）</a>
             </dd>
           </div>
         </dl>
         <div class="introduction__nav-wrap">
-          <a href="../diary/index.html" class="introduction__link-prev">
+          <a href="../furnitureSpot/index.html" class="introduction__link-prev">
             <div class="introduction__link-img-wrap">
-              <img src="../../images/works/thumbnail_diary.jpg" alt="Diaryサムネイル"
+              <img src="../../images/works/thumbnail_furnitureSpot.jpg" alt="furnitureSpotサムネイル"
                 class="introduction__link-img">
             </div>
-            <span class="introduction__link-txt en">Diary</span>
+            <span class="introduction__link-txt en">Furniture Spot</span>
           </a>
           <a href="../index.html" class="introduction__link-works">WORKS</a>
-          <a href="../sierra/index.html" class="introduction__link-next">
+          <a href="../homesnap/index.html" class="introduction__link-next">
             <div class="introduction__link-img-wrap">
-              <img src="../../images/works/thumbnail_sierra.jpg" alt="Sierra Solutionサムネイル" class="introduction__link-img">
+              <img src="../../images/works/thumbnail_homesnap.jpg" alt="HomeSnapサムネイル" class="introduction__link-img">
             </div>
-            <span class="introduction__link-txt en">Sierra Solution</span>
+            <span class="introduction__link-txt en">Home Snap</span>
           </a>
         </div>
       </div>
@@ -134,7 +134,7 @@
           <a href="../index.html" class="breadcrumb__link">WORKS</a>
         </li>
         <li class="breadcrumb__list">
-          <p class="breadcrumb__txt en">Home Snap</p>
+          <p class="breadcrumb__txt en">Diary</p>
         </li>
       </ul>
     </main>
