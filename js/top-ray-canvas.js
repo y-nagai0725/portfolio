@@ -139,6 +139,7 @@ ScrollTrigger.create({
   end: "center top",
   onEnter: () => {
     mvCanvasWrapper.classList.add("hidden");
+    mvCanvasWrapper.classList.add("entered");
     tick();
   },
   onEnterBack: () => {

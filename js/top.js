@@ -256,7 +256,9 @@ document.addEventListener('DOMContentLoaded', function () {
         catchcopyJa.classList.add('js-active');
         catchcopyEnImg.classList.add('js-active');
         scrollBtn.classList.add('js-active');
-        mvCanvasWrapper.classList.remove("hidden");
+        if (!mvCanvasWrapper.classList.contains("entered")) {
+          mvCanvasWrapper.classList.remove("hidden");
+        }
       }, 800);
       setTimeout(() => {
         header.classList.add('js-show');
@@ -269,8 +271,10 @@ document.addEventListener('DOMContentLoaded', function () {
       scrollBtn.classList.add('js-completed');
       scrollBtn.classList.add('js-active');
       header.classList.add('js-show');
-      if(window.scrollY < messageSection.getBoundingClientRect().top + window.scrollY - window.innerHeight){
-        mvCanvasWrapper.classList.remove("hidden");
+      if (window.scrollY < messageSection.getBoundingClientRect().top + window.scrollY - window.innerHeight) {
+        if (!mvCanvasWrapper.classList.contains("entered")) {
+          mvCanvasWrapper.classList.remove("hidden");
+        }
       }
     }
   }
